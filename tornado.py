@@ -3,9 +3,27 @@ from cryptography.fernet import Fernet
 import art
 from bs4 import BeautifulSoup
 import requests
-
+import os
 
 art.tprint("TORNADO")
+def checking_for_updates():
+    try:
+        response = requests.get('https://1mteapp.github.io/tornado_download/version')
+        soup = BeautifulSoup(response.text, "html.parser")
+        check = soup.find('h1').get_text()
+        if check == '1.1':
+            print('У Вас установлена последняя версия!\n')
+            time.sleep(2)
+
+            start_start()
+        else:
+            print('Вышло новое обновление! Скачайте его на нашем официальном сайте - https://1mteapp.github.io/tornado_download/\n')
+            time.sleep(2)
+            start_start()
+    except:
+        print('Произошла ошибка при проверке обновления!')
+        start_start()
+
 def start_start():
     print("1  -   Расшифровка сообщения.")
     print("2  -   Зашифровка сообщения.")
@@ -64,7 +82,6 @@ def run_search(query):
 
     start_start()
 def browser():
-    run_search(input("Введите запрос поиска:\n").replace(" ", "_"))
+    run_search(input("Введите запрос поиска:\n").replace(' ', ''))
 
-
-start_start()
+checking_for_updates()
