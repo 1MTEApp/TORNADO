@@ -1,0 +1,4 @@
+cryptography==38.0.4
+art==5.7
+beautifulsoup4==4.12.2
+requests==2.31.0
