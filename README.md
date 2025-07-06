@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 # Запуск приложения
 python tornado.py
-
+```
 #🚀 Использование
 📋 Главное меню
 ```text
