@@ -30,9 +30,8 @@ class TornadoApp:
             print("="*30)
             print("1. Расшифровать сообщение")
             print("2. Зашифровать сообщение")
-            print("3. Поиск в интернете")
-            print("4. Настройки")
-            print("5. Выход")
+            print("3. Настройки")
+            print("4. Выход")
             
             choice = input("\nВыберите действие: ")
             
@@ -41,15 +40,13 @@ class TornadoApp:
             elif choice == "2":
                 self.encrypt()
             elif choice == "3":
-                self.web_search()
-            elif choice == "4":
                 self.settings()
-            elif choice == "5":
+            elif choice == "4":
                 print("Завершение работы...")
                 time.sleep(1)
                 sys.exit()
             else:
-                print("Некорректный ввод! Пожалуйста, выберите действие от 1 до 5")
+                print("Некорректный ввод! Пожалуйста, выберите действие от 1 до 4")
 
     def decrypt(self):
         print("\n" + "="*30)
@@ -93,45 +90,9 @@ class TornadoApp:
             print("-"*30)
         except Exception as e:
             print(f"\nОшибка шифрования: {str(e)}")
-
-    def web_search(self):
-        print("\n" + "="*30)
-        print("Поиск в интернете".center(30))
-        print("="*30)
         
         query = input("Введите поисковый запрос: ").strip()
-        if not query:
-            print("Запрос не может быть пустым!")
-            return
-            
-        try:
-            url = f'https://www.bing.com/search?q={query.replace(" ", "+")}'
-            response = requests.get(url, timeout=10)
-            response.raise_for_status()
-            
-            soup = BeautifulSoup(response.text, 'html.parser')
-            results = soup.find_all('li', class_='b_algo')
-            
-            print(f"\nРезультаты поиска для '{query}':")
-            print("-"*50)
-            
-            for idx, result in enumerate(results[:5], 1):
-                title = result.find('h2').get_text(strip=True)
-                link = result.find('a')['href']
-                snippet = result.find('p').get_text(strip=True) if result.find('p') else ""
-                
-                print(f"\n{idx}. {title}")
-                print(f"   {link}")
-                print(f"   {snippet[:100]}...")
-            
-            print("\n0. Возврат в меню")
-            choice = input("\nВыберите результат для открытия (1-5) или 0 для отмены: ")
-            
-            if choice.isdigit() and 1 <= int(choice) <= min(5, len(results)):
-                webbrowser.open(results[int(choice)-1].find('a')['href'])
-        except Exception as e:
-            print(f"Ошибка поиска: {str(e)}")
-
+        
     def settings(self):
         while True:
             print("\n" + "="*30)
