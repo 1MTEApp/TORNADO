@@ -91,7 +91,6 @@ class TornadoApp:
         except Exception as e:
             print(f"\nОшибка шифрования: {str(e)}")
         
-        query = input("Введите поисковый запрос: ").strip()
         
     def settings(self):
         while True:
