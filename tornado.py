@@ -2,10 +2,7 @@ import sys
 import time
 from cryptography.fernet import Fernet
 import art
-from bs4 import BeautifulSoup
-import requests
 import os
-import webbrowser
 
 class TornadoApp:
     def __init__(self):
@@ -33,7 +30,7 @@ class TornadoApp:
             print("3. Настройки")
             print("4. Выход")
             
-            choice = input("\nВыберите действие: ")
+            choice = input("\n Выберите действие: ")
             
             if choice == "1":
                 self.decrypt()
@@ -79,7 +76,7 @@ class TornadoApp:
             f = Fernet(key)
             token = f.encrypt(text)
             
-            print("\nВаш ключ (сохраните в безопасном месте!):")
+            print("\n Ваш ключ (сохраните в безопасном месте!):")
             print("-"*30)
             print(key.decode())
             print("-"*30)
@@ -89,9 +86,7 @@ class TornadoApp:
             print(token.decode())
             print("-"*30)
         except Exception as e:
-            print(f"\nОшибка шифрования: {str(e)}")
-        
-        
+            print(f"\n Ошибка шифрования: {str(e)}")
     def settings(self):
         while True:
             print("\n" + "="*30)
@@ -102,7 +97,7 @@ class TornadoApp:
             print("3. Сбросить настройки")
             print("4. Возврат в главное меню")
             
-            choice = input("\nВыберите действие: ")
+            choice = input("\n Выберите действие: ")
             
             if choice == "1":
                 new_name = input("Введите новое имя программы: ")
@@ -112,9 +107,9 @@ class TornadoApp:
             elif choice == "2":
                 try:
                     with open('program_name.txt', 'r') as file:
-                        print(f"\nТекущее имя: {file.read()}")
+                        print(f"\n Текущее имя: {file.read()}")
                 except FileNotFoundError:
-                    print("\nТекущее имя: TORNADO (по умолчанию)")
+                    print("\n Текущее имя: TORNADO (по умолчанию)")
             elif choice == "3":
                 try:
                     os.remove('program_name.txt')
